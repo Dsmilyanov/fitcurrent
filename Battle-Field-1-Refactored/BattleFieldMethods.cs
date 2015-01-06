@@ -7,14 +7,11 @@ namespace BattleField
 {
     class Methods
     {
-        //tuk e magiqta!!!!
-        //we got the POWER
-        public static void NapylniMasiva(int n, int rows, int cols, String[,] workField)
+        public static void CreateBattleFieldArray(int n, int rows, int cols, String[,] workField)
         {
             int count = 0;
             Random randomNumber = new Random();
-            int randomPlaceI;
-            int randomPlaceJ;
+            
             int minPercent = Convert.ToInt32(0.15 * (n * n));
             int maxPercent = Convert.ToInt32(0.30 * (n * n));
             int countMines = randomNumber.Next(minPercent, maxPercent);
@@ -22,30 +19,30 @@ namespace BattleField
             while (count <= countMines)
             {
 
-                randomPlaceI = randomNumber.Next(0, n);
-                randomPlaceJ = randomNumber.Next(0, n);
-                randomPlaceI += 2;
-                randomPlaceJ = 2 * randomPlaceJ + 2;
+                int randomRow = randomNumber.Next(0, n);
+                int randomCol = randomNumber.Next(0, n);
+                randomRow += 2;
+                randomCol = 2 * randomCol + 2;
 
-                while (workField[randomPlaceI, randomPlaceJ] != " " && workField[randomPlaceI, randomPlaceJ] != "-")
+                while (workField[randomRow, randomCol] != " " && workField[randomRow, randomCol] != "-")
                 {
 
-                    randomPlaceI = randomNumber.Next(0, n);
-                    randomPlaceJ = randomNumber.Next(0, n);
-                    randomPlaceI += 2;
-                    randomPlaceJ = 2 * randomPlaceJ + 2;
+                    randomRow = randomNumber.Next(0, n);
+                    randomCol = randomNumber.Next(0, n);
+                    randomRow += 2;
+                    randomCol = 2 * randomCol + 2;
 
                 }
 
                 String randomDigit = Convert.ToString(randomNumber.Next(1, 6));
-                workField[randomPlaceI, randomPlaceJ] = randomDigit;
-                workField[randomPlaceI, randomPlaceJ + 1] = " ";
+                workField[randomRow, randomCol] = randomDigit;
+                workField[randomRow, randomCol + 1] = " ";
                 count++;
             }
         }
 
 
-        public static void PrintArray(int rows, int cols, String[,] workField)
+        public static void PrintBattleFieldArray(int rows, int cols, String[,] workField)
         {
 
             for (int i = 0; i < rows; i++)
@@ -61,11 +58,12 @@ namespace BattleField
 
         }
 
-        public static void vremeEIgrachaDaDeistva(int n, int rows, int cols, String[,] workField, int countPlayed)
+        public static void Play(int n, int rows, int cols, String[,] workField, int countPlayed)
         {
             countPlayed++;
             Console.WriteLine("Please enter coordinates: ");
             String xy = Console.ReadLine();
+            
             int x = int.Parse(xy.Substring(0, 1));
             int y = int.Parse(xy.Substring(2, 1));
 
@@ -116,10 +114,10 @@ namespace BattleField
                 case 5: HitFive(x, y, rows, cols, workField); break;
             }
 
-            PrintArray(rows, cols, workField);
+            PrintBattleFieldArray(rows, cols, workField);
             if (!Krai(rows, cols, workField))
             {
-                vremeEIgrachaDaDeistva(n, rows, cols, workField, countPlayed);
+                Play(n, rows, cols, workField, countPlayed);
             }
             else
             {

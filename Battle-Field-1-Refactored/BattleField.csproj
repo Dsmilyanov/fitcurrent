@@ -8,8 +8,8 @@
     <ProjectGuid>{0A083471-3972-4892-98BC-8A94BF306EE5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bombi</RootNamespace>
-    <AssemblyName>Bombi</AssemblyName>
+    <RootNamespace>BattleField</RootNamespace>
+    <AssemblyName>BattleField</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
