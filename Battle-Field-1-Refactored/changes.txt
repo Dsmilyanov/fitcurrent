@@ -1,0 +1,12 @@
+Renamed the solution and project files to BattleField.
+Renamed Methods.cs to BattleFieldMethods.cs.
+Renamed methods as follows:
+		NapylniMasiva() -> CreateBattleFieldArray()
+		PrintArray() -> PrintBattleFieldArray()
+		vremeEIgrachaDaDeistva() -> Play()
+In file BattleFieldGame.cs removed some extra spaces and lines. Aligned brackets.
+In file BattleFieldMethods.cs:
+In method public static void CreateBattleFieldArray:
+	renamed randomPlaceI to randomRow
+	renamed randomPlaceJ to randomCol
+	moved declaration of randomCol and randomRow into the while loop
