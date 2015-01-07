@@ -5,13 +5,13 @@ using System.Text;
 
 namespace BattleField
 {
-    class Methods
+    class BattleFieldMethods
     {
         public static void CreateBattleFieldArray(int n, int rows, int cols, String[,] workField)
         {
             int count = 0;
             Random randomNumber = new Random();
-            
+
             int minPercent = Convert.ToInt32(0.15 * (n * n));
             int maxPercent = Convert.ToInt32(0.30 * (n * n));
             int countMines = randomNumber.Next(minPercent, maxPercent);
@@ -49,11 +49,11 @@ namespace BattleField
             {
 
                 for (int j = 0; j < cols; j++)
-
-
+                {
                     Console.Write(workField[i, j]);
+                }
+                
                 Console.WriteLine();
-
             }
 
         }
@@ -63,9 +63,9 @@ namespace BattleField
             countPlayed++;
             Console.WriteLine("Please enter coordinates: ");
             String xy = Console.ReadLine();
-            
+
             int x = int.Parse(xy.Substring(0, 1));
-            int y = int.Parse(xy.Substring(2, 1));
+            int y = int.Parse(xy.Substring(1, 1));
 
             while ((x < 0 || x > (n - 1)) && (y < 0 || y > (n - 1)))
             {
@@ -73,7 +73,7 @@ namespace BattleField
                 Console.WriteLine("Please enter coordinates: ");
                 xy = Console.ReadLine();
                 x = int.Parse(xy.Substring(0, 1));
-                y = int.Parse(xy.Substring(2, 1));
+                y = int.Parse(xy.Substring(1, 1));
 
             }
 
@@ -86,7 +86,7 @@ namespace BattleField
                 Console.WriteLine("Please enter coordinates: ");
                 xy = Console.ReadLine();
                 x = int.Parse(xy.Substring(0, 1));
-                y = int.Parse(xy.Substring(2, 1));
+                y = int.Parse(xy.Substring(1, 1));
 
                 while ((x < 0 || x > (n - 1)) && (y < 0 || y > (n - 1)))
                 {
@@ -94,7 +94,7 @@ namespace BattleField
                     Console.WriteLine("Please enter coordinates: ");
                     xy = Console.ReadLine();
                     x = int.Parse(xy.Substring(0, 1));
-                    y = int.Parse(xy.Substring(2, 1));
+                    y = int.Parse(xy.Substring(1, 1));
 
                 }
 
@@ -103,19 +103,18 @@ namespace BattleField
 
             }
 
-
             int hitCoordinate = Convert.ToInt32(workField[x, y]);
             switch (hitCoordinate)
             {
                 case 1: HitOne(x, y, rows, cols, workField); break;
-                case 2: PrasniDvama(x, y, rows, cols, workField); break;
+                case 2: HitTwo(x, y, rows, cols, workField); break;
                 case 3: HitThree(x, y, rows, cols, workField); break;
                 case 4: HitFour(x, y, rows, cols, workField); break;
                 case 5: HitFive(x, y, rows, cols, workField); break;
             }
 
             PrintBattleFieldArray(rows, cols, workField);
-            if (!Krai(rows, cols, workField))
+            if (!End(rows, cols, workField))
             {
                 Play(n, rows, cols, workField, countPlayed);
             }
@@ -125,7 +124,6 @@ namespace BattleField
             }
 
         }
-
 
         public static void HitOne(int x, int y, int rows, int cols, String[,] workField)
         {
@@ -150,7 +148,7 @@ namespace BattleField
 
         }
 
-        public static void PrasniDvama(int x, int y, int rows, int cols, String[,] workField)
+        public static void HitTwo(int x, int y, int rows, int cols, String[,] workField)
         {
             workField[x, y] = "X";
             HitOne(x, y, rows, cols, workField);
@@ -170,13 +168,12 @@ namespace BattleField
             {
                 workField[x + 1, y] = "X";
             }
-
         }
 
 
         public static void HitThree(int x, int y, int rows, int cols, String[,] workField)
         {
-            PrasniDvama(x, y, rows, cols, workField);
+            HitTwo(x, y, rows, cols, workField);
             if (x - 2 > 1)
             {
                 workField[x - 2, y] = "X";
@@ -192,7 +189,6 @@ namespace BattleField
             if (y == 18)
             {
                 workField[x, y + 2] = "X";
-
             }
             else if (y == 20)
             {
@@ -223,7 +219,6 @@ namespace BattleField
                 workField[x - 2, y + 2] = "X";
             }
 
-
             if (x < rows - 1 && y - 4 > 1)
             {
                 workField[x + 1, y - 4] = "X";
@@ -232,12 +227,10 @@ namespace BattleField
             {
                 workField[x + 2, y - 2] = "X";
             }
-
             if (x < rows - 2 && y < cols - 2)
             {
                 workField[x + 2, y + 2] = "X";
             }
-
             if (y == 18)
             {
                 if (x - 1 > 1)
@@ -250,7 +243,6 @@ namespace BattleField
                     workField[x + 1, y + 2] = "X";
                 }
             }
-
             else if (y == 20)
             {
                 if (x - 1 > 1)
@@ -280,39 +272,39 @@ namespace BattleField
 
         }
 
-        public static void HitFive(int x, int y, int rows, int cols, String[,] poleZaRabota)
+        public static void HitFive(int x, int y, int rows, int cols, String[,] workField)
         {
-            HitFour(x, y, rows, cols, poleZaRabota);
+            HitFour(x, y, rows, cols, workField);
             if (x - 2 > 1 && y - 4 > 1)
             {
-                poleZaRabota[x - 2, y - 4] = "X";
+                workField[x - 2, y - 4] = "X";
             }
 
             if (x < rows - 2 && y - 4 > 1)
             {
-                poleZaRabota[x + 2, y - 4] = "X";
+                workField[x + 2, y - 4] = "X";
             }
 
             if (y == 18)
             {
                 if (x < rows - 2)
                 {
-                    poleZaRabota[x + 2, y + 2] = "X";
+                    workField[x + 2, y + 2] = "X";
                 }
                 if (x - 2 > 1)
                 {
-                    poleZaRabota[x - 2, y + 2] = "X";
+                    workField[x - 2, y + 2] = "X";
                 }
             }
             else if (y == 20)
             {
                 if (x < rows - 2)
                 {
-                    poleZaRabota[x + 2, y] = "X";
+                    workField[x + 2, y] = "X";
                 }
                 if (x - 2 > 1)
                 {
-                    poleZaRabota[x - 2, y] = "X";
+                    workField[x - 2, y] = "X";
                 }
 
             }
@@ -320,30 +312,30 @@ namespace BattleField
             {
                 if (x < rows - 2 && y < cols - 3)
                 {
-                    poleZaRabota[x + 2, y + 4] = "X";
+                    workField[x + 2, y + 4] = "X";
                 }
                 if (x - 2 > 1 && y < cols - 3)
                 {
-                    poleZaRabota[x - 2, y + 4] = "X";
+                    workField[x - 2, y + 4] = "X";
                 }
             }
         }
 
-        public static bool Krai(int rows, int cols, String[,] Полето)
+        public static bool End(int rows, int cols, String[,] Field)
         {
-            bool край = true;
+            bool end = true;
             for (int i = 2; i < rows; i++)
             {
                 for (int j = 2; j < cols; j++)
                 {
-                    if (Полето[i, j] == "1" || Полето[i, j] == "2" || Полето[i, j] == "3" || Полето[i, j] == "4" || Полето[i, j] == "5")
+                    if (Field[i, j] == "1" || Field[i, j] == "2" || Field[i, j] == "3" || Field[i, j] == "4" || Field[i, j] == "5")
                     {
-                        край = false;
+                        end = false;
                         break;
                     }
                 }
             }
-            return край;
+            return end;
 
         }
 

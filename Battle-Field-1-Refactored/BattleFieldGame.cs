@@ -65,10 +65,10 @@ namespace BattleField
                 }
             }
 
-            Methods.CreateBattleFieldArray(n, rows, cols, field);
-            Methods.PrintBattleFieldArray(rows, cols, field);
+            BattleFieldMethods.CreateBattleFieldArray(n, rows, cols, field);
+            BattleFieldMethods.PrintBattleFieldArray(rows, cols, field);
             int countPlayed = 0;
-            Methods.Play(n, rows, cols, field, countPlayed);
+            BattleFieldMethods.Play(n, rows, cols, field, countPlayed);
 
         }
     }

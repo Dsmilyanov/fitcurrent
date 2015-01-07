@@ -1,0 +1,4 @@
+D:\SoftUni\fitcurrent\Battle-Field-1-Refactored\bin\Debug\BattleField.exe
+D:\SoftUni\fitcurrent\Battle-Field-1-Refactored\bin\Debug\BattleField.pdb
+D:\SoftUni\fitcurrent\Battle-Field-1-Refactored\obj\x86\Debug\BattleField.exe
+D:\SoftUni\fitcurrent\Battle-Field-1-Refactored\obj\x86\Debug\BattleField.pdb
