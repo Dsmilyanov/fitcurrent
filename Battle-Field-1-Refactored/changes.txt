@@ -4,9 +4,16 @@ Renamed methods as follows:
 		NapylniMasiva() -> CreateBattleFieldArray()
 		PrintArray() -> PrintBattleFieldArray()
 		vremeEIgrachaDaDeistva() -> Play()
-In file BattleFieldGame.cs removed some extra spaces and lines. Aligned brackets.
+		PrasniDvama() -> HitTwo()
+In file BattleFieldGame.cs removed some extra spaces and lines. 
+
 In file BattleFieldMethods.cs:
-In method public static void CreateBattleFieldArray:
+	Formatted brackets.
+	renamed poleZaRabota to workField
+	renamed Krai to End
+	renamed край to end
+	renamed Полето to Field
+In method CreateBattleFieldArray:
 	renamed randomPlaceI to randomRow
 	renamed randomPlaceJ to randomCol
 	moved declaration of randomCol and randomRow into the while loop
